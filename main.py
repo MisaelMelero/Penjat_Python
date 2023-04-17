@@ -8,6 +8,8 @@ import random
 import time
 import csv
 
+def login():
+	print("hello world")
 
 #Funció per esborrar la pantalla
 def clear():
