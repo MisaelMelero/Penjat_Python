@@ -169,8 +169,26 @@ def scores():
 	print("╚═════════════════════════════════════════════════════════════════════════════╝▒")
 	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
 	print("                                                                                ")
-	press_enter()
-	clear()
+	
+	opcio_menu_2 = input("Selecciona una opció: ")
+	if opcio_menu_2 == "1":
+		ranking_general()
+	elif opcio_menu_2 == "2":
+		puntuacions_personals()
+	elif opcio_menu_2 == "3":
+		option = menu()
+		
+		if option == 1:
+			game()
+		
+		elif option == 2:
+			scores()
+		
+		elif option == 3:
+			exit()
+	else:
+		print("\nOpció no vàlida. Si us plau, selecciona una opció del menú.\n")
+		time.sleep(1)
 
 def ranking_general():
 	print("Aquí apareixerà el ranking general")
@@ -243,14 +261,3 @@ elif option == 2:
 
 elif option == 3:
 	exit()
-
-#opcio_menu_2 = input("Selecciona una opció: ")
-#if opcio_menu_2 == "1":
-#	ranking_general()
-#elif opcio_menu_2 == "2":
-#	puntuacions_personals()
-#elif opcio_menu_2 == "3":
-#	menu()
-#else:
-#	print("\nOpció no vàlida. Si us plau, selecciona una opció del menú.\n")
-#	time.sleep(1)
