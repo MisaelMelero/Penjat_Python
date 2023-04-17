@@ -5,8 +5,6 @@ import select
 import random
 import time
 import csv
-from termcolor import colored
-
 
 #Funció per esborrar la pantalla
 def clear():
@@ -97,7 +95,7 @@ def game():
 			#print("[DEBUG]", answer)
 
 			if "_" not in lines:
-						print(colored("Resposta correcta!", "green"))
+						print("Resposta correcta!")
 						time.sleep(1)
 						break
 			
@@ -108,7 +106,7 @@ def game():
 				guess_type = validate(guess)
 				
 				if guess_type == "invalid":
-					print(colored("Error: Si us plau, insereix una lletra o la paraula\n", "red"))
+					print("Error: Si us plau, insereix una lletra o la paraula")
 					time.sleep(1)
 					clear()
 				
@@ -119,7 +117,7 @@ def game():
 								lines[x] = guess
 								
 					else:
-						print(colored("Lletra incorrecta :(\n", "red"))
+						print("Lletra incorrecta:")
 						time.sleep(1)
 						
 					guessed_letters.append(guess)
@@ -127,11 +125,11 @@ def game():
 				elif guess_type == "word":
 					
 					if guess.lower() == answer:
-						print(colored("Resposta correcta!\n", "green"))
+						print(("Resposta correcta! "))
 						time.sleep(1)
 						
 					else:
-						print(colored("Resposta incorrecta :(\n", "red"))
+						print("Resposta incorrecta: ")
 						time.sleep(1)
 					break
 			
@@ -152,7 +150,6 @@ def game():
 	scores()
 
 def scores():
-	# Aquí es pot posar el codi per llegir el fitxer de puntuacions i mostrar-les per pantalla
 	clear()
 	print("╔═════════════════════════════════════════════════════════════════════════════╗")                     
 	print("║  _____  _    _ _   _ _______ _    _         _____ _____ ____  _   _  _____  ║▒")
@@ -166,6 +163,7 @@ def scores():
 	print("║                                                                             ║▒")
 	print("║                              1. Ranking general                             ║▒")
 	print("║                           2. Puntuacions personals                          ║▒")
+	print("║                                   3. Sortir                                 ║▒")
 	print("║                                                                             ║▒")
 	print("╚═════════════════════════════════════════════════════════════════════════════╝▒")
 	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
