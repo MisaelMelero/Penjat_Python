@@ -8,9 +8,6 @@ import random
 import time
 import csv
 
-def login():
-	print("hello world")
-
 #Funció per esborrar la pantalla
 def clear():
 	if os.name == "nt":
@@ -111,7 +108,10 @@ def game():
 				guess_type = validate(guess)
 				
 				if guess_type == "invalid":
+
+
 					print("Error: Si us plau, insereix una lletra o la paraula\n")
+          
 					time.sleep(1)
 					clear()
 				
@@ -122,7 +122,9 @@ def game():
 								lines[x] = guess
 								
 					else:
+
 						print("Lletra incorrecta :(\n")
+
 						time.sleep(1)
 						
 					guessed_letters.append(guess)
@@ -130,11 +132,13 @@ def game():
 				elif guess_type == "word":
 					
 					if guess.lower() == answer:
+
 						print("Resposta correcta!\n")
 						time.sleep(1)
 						
 					else:
 						print("Resposta incorrecta :(\n")
+
 						time.sleep(1)
 					break
 			
@@ -155,9 +159,24 @@ def game():
 	scores()
 
 def scores():
-	# Aquí es pot posar el codi per llegir el fitxer de puntuacions i mostrar-les per pantalla
 	clear()
-	print("Aquestes són les millors puntuacions:")
+	print("╔═════════════════════════════════════════════════════════════════════════════╗")                     
+	print("║  _____  _    _ _   _ _______ _    _         _____ _____ ____  _   _  _____  ║▒")
+	print("║ |  __ \| |  | | \ | |__   __| |  | |  /\   / ____|_   _/ __ \| \ | |/ ____| ║▒")
+	print("║ | |__) | |  | |  \| |  | |  | |  | | /  \ | |      | || |  | |  \| | (___   ║▒")
+	print("║ |  ___/| |  | | . ` |  | |  | |  | |/ /\ \| |      | || |  | | . ` |\___ \  ║▒")
+	print("║ | |    | |__| | |\  |  | |  | |__| / ____ \ |____ _| || |__| | |\  |____) | ║▒")
+	print("║ |_|     \____/|_| \_|  |_|   \____/_/    \_\_____|_____\____/|_| \_|_____/  ║▒")
+	print("║                                                                             ║▒")
+	print("╠═════════════════════════════════════════════════════════════════════════════╣▒")
+	print("║                                                                             ║▒")
+	print("║                              1. Ranking general                             ║▒")
+	print("║                           2. Puntuacions personals                          ║▒")
+	print("║                                   3. Sortir                                 ║▒")
+	print("║                                                                             ║▒")
+	print("╚═════════════════════════════════════════════════════════════════════════════╝▒")
+	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
+	print("                                                                                ")
 	press_enter()
 	clear()
 
