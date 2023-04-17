@@ -122,9 +122,7 @@ def game():
 								lines[x] = guess
 								
 					else:
-
-						print("Lletra incorrecta :(\n")
-
+						print("Lletra incorrecta :(")
 						time.sleep(1)
 						
 					guessed_letters.append(guess)
@@ -137,6 +135,7 @@ def game():
 						time.sleep(1)
 						
 					else:
+						print("Resposta incorrecta :(")
 						print("Resposta incorrecta :(\n")
 
 						time.sleep(1)
@@ -158,6 +157,7 @@ def game():
 			
 	scores()
 
+#Menú puntuacions
 def scores():
 	clear()
 	print("╔═════════════════════════════════════════════════════════════════════════════╗")                     
@@ -170,16 +170,39 @@ def scores():
 	print("║                                                                             ║▒")
 	print("╠═════════════════════════════════════════════════════════════════════════════╣▒")
 	print("║                                                                             ║▒")
-	print("║                              1. Ranking general                             ║▒")
+	print("║                           1. Ranking general                                ║▒")
 	print("║                           2. Puntuacions personals                          ║▒")
-	print("║                                   3. Sortir                                 ║▒")
+	print("║                           3. Sortir                                         ║▒")
 	print("║                                                                             ║▒")
 	print("╚═════════════════════════════════════════════════════════════════════════════╝▒")
 	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
 	print("                                                                                ")
-	press_enter()
-	clear()
+	
+	opcio_menu_2 = input("Selecciona una opció: ")
+	if opcio_menu_2 == "1":
+		ranking_general()
+	elif opcio_menu_2 == "2":
+		puntuacions_personals()
+	elif opcio_menu_2 == "3":
+		option = menu()
+		
+		if option == 1:
+			game()
+		
+		elif option == 2:
+			scores()
+		
+		elif option == 3:
+			exit()
+	else:
+		print("\nOpció no vàlida. Si us plau, selecciona una opció del menú.\n")
+		time.sleep(1)
 
+def ranking_general():
+	print("Aquí apareixerà el ranking general")
+
+def puntuacions_personals():
+	print("Aquí apareixerà les puntuacions personal")
 
 #Funció per sortir del programa
 def exit():
@@ -191,48 +214,59 @@ def exit():
 	clear()
 	sys.exit()
 
-
+def menu():
 #Menú principal
-while True:
-	clear()
-	print("╔═══════════════════════════════════════════════════════════╗")
-	print("║  ______ _        _____  ______ _   _      _      _______  ║▒")
-	print("║ |  ____| |      |  __ \|  ____| \ | |    | |  /\|__   __| ║▒")
-	print("║ | |__  | |      | |__) | |__  |  \| |    | | /  \  | |    ║▒")
-	print("║ |  __| | |      |  ___/|  __| | . ` |_   | |/ /\ \ | |    ║▒")
-	print("║ | |____| |____  | |    | |____| |\  | |__| / ____ \| |    ║▒")
-	print("║ |______|______| |_|    |______|_| \_|\____/_/    \_\_|    ║▒")
-	print("║                                                           ║▒")
-	print("╠═══════════════════════════════════════════════════════════╣▒")
-	print("║                                                           ║▒")
-	print("║                         ┌───┐                             ║▒")
-	print("║                         │   │                             ║▒")
-	print("║                         O   │                             ║▒")
-	print("║                        /|\  │                             ║▒")
-	print("║                        / \  │                             ║▒")
-	print("║                             │                             ║▒")
-	print("║                        ─────┴──                           ║▒")
-	print("║                                                           ║▒")
-	print("╠═══════════════════════════════════════════════════════════╣▒")
-	print("║                                                           ║▒")
-	print("║                     1. Jugar                              ║▒")
-	print("║                     2. Puntuacions                        ║▒")
-	print("║                     3. Sortir                             ║▒")
-	print("║                                                           ║▒")
-	print("╠═══════════════════════════════════════════════════════════╣▒")
-	print("║                         MENU                              ║▒")
-	print("╚═══════════════════════════════════════════════════════════╝▒")
-	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-	print("                                                             ")
+	while True:
+		clear()
+		print("╔═══════════════════════════════════════════════════════════╗")
+		print("║  ______ _        _____  ______ _   _      _      _______  ║▒")
+		print("║ |  ____| |      |  __ \|  ____| \ | |    | |  /\|__   __| ║▒")
+		print("║ | |__  | |      | |__) | |__  |  \| |    | | /  \  | |    ║▒")
+		print("║ |  __| | |      |  ___/|  __| | . ` |_   | |/ /\ \ | |    ║▒")
+		print("║ | |____| |____  | |    | |____| |\  | |__| / ____ \| |    ║▒")
+		print("║ |______|______| |_|    |______|_| \_|\____/_/    \_\_|    ║▒")
+		print("║                                                           ║▒")
+		print("╠═══════════════════════════════════════════════════════════╣▒")
+		print("║                                                           ║▒")
+		print("║                         ┌───┐                             ║▒")
+		print("║                         │   │                             ║▒")
+		print("║                         O   │                             ║▒")
+		print("║                        /|\  │                             ║▒")
+		print("║                        / \  │                             ║▒")
+		print("║                             │                             ║▒")
+		print("║                        ─────┴──                           ║▒")
+		print("║                                                           ║▒")
+		print("╠═══════════════════════════════════════════════════════════╣▒")
+		print("║                                                           ║▒")
+		print("║                     1. Jugar                              ║▒")
+		print("║                     2. Puntuacions                        ║▒")
+		print("║                     3. Sortir                             ║▒")
+		print("║                                                           ║▒")
+		print("╠═══════════════════════════════════════════════════════════╣▒")
+		print("║                         MENU                              ║▒")
+		print("╚═══════════════════════════════════════════════════════════╝▒")
+		print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
+		print("                                                             ")
 
-	opcio = input("Selecciona una opció: ")
+		opcio_menu_1 = input("Selecciona una opció: ")
 
-	if opcio == "1":
-		game()
-	elif opcio == "2":
-		scores()
-	elif opcio == "3":
-		exit()
-	else:
-		print("\nOpció no vàlida. Si us plau, selecciona una opció del menú.\n")
-		time.sleep(1)
+		if opcio_menu_1 == "1":
+			return 1
+		elif opcio_menu_1 == "2":
+			return 2
+		elif opcio_menu_1 == "3":
+			return 3
+		else:
+			print("\nOpció no vàlida. Si us plau, selecciona una opció del menú.\n")
+			time.sleep(1)
+
+option = menu()
+
+if option == 1:
+	game()
+
+elif option == 2:
+	scores()
+
+elif option == 3:
+	exit()
