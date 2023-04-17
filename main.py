@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #Llibreries
 import os
 import sys
@@ -84,11 +86,11 @@ def game():
 			
 			time_left = int(end_time - time.time())
 			
-			print("Temps restant:", time_left, "segons")
+			print(f"Temps restant: {time_left} segons")
 			print("-"*25, "\n")
-			print("Paraula", i+1,"\n")
+			print(f"Paraula {i+1}\n")
 			print("Definició:", definitions[Questions[i]])
-			print("\n(", points[Questions[i]], "punts )\n")
+			print(f"\n({points[Questions[i]]} punts)\n")
 			print(" ".join(lines))
 			print("\nLletres provades:", guessed_letters)
 			print("\nParaula o lletra:\n")
@@ -106,7 +108,10 @@ def game():
 				guess_type = validate(guess)
 				
 				if guess_type == "invalid":
-					print("Error: Si us plau, insereix una lletra o la paraula")
+
+
+					print("Error: Si us plau, insereix una lletra o la paraula\n")
+          
 					time.sleep(1)
 					clear()
 				
@@ -117,7 +122,9 @@ def game():
 								lines[x] = guess
 								
 					else:
-						print("Lletra incorrecta:")
+
+						print("Lletra incorrecta :(\n")
+
 						time.sleep(1)
 						
 					guessed_letters.append(guess)
@@ -125,11 +132,13 @@ def game():
 				elif guess_type == "word":
 					
 					if guess.lower() == answer:
-						print(("Resposta correcta! "))
+
+						print("Resposta correcta!\n")
 						time.sleep(1)
 						
 					else:
-						print("Resposta incorrecta: ")
+						print("Resposta incorrecta :(\n")
+
 						time.sleep(1)
 					break
 			
@@ -179,6 +188,7 @@ def exit():
 	print("║           Fins aviat!            ║")
 	print("╚══════════════════════════════════╝")
 	time.sleep(1)
+	clear()
 	sys.exit()
 
 
