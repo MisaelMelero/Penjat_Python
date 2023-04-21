@@ -155,7 +155,6 @@ def game():
 				print("/ \  │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=7:
 				print("Has fallat!!!")
 				time.sleep(1)
 				scores()
