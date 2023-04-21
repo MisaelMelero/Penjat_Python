@@ -42,6 +42,22 @@ def validate(guess):
 	else:
 		return "invalid"
 
+#Funció per mostrar la puntuació de l'usuari després de la partida
+def game_stats(a, b, c, d, e):
+	print("╔═══════════════════════════════════════════════════════════╗")
+	print("║                                                           ║▒")
+	print("║                  Final de la partida                      ║▒")
+	print("║                                                           ║▒")
+	print(f"║                  Puntuació final:       {a:03d}               ║▒")
+	print("║                                                           ║▒")
+	print(f"║                  Lletres correctes:      {b:02d}               ║▒")
+	print(f"║                  Respostes correctes:    {d:02d}               ║▒")
+	print(f"║                  Lletres incorrectes:     {c:01d}               ║▒")
+	print(f"║                  Respostes incorrectes:   {e:01d}               ║▒")		
+	print("║                                                           ║▒")
+	print("╚═══════════════════════════════════════════════════════════╝▒")
+	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
+
 #Matrius per emmagatzemar les dades del fitxer "penjat.csv"
 words = []
 definitions = []
@@ -70,6 +86,10 @@ def game():
 	end_time = start_time + timeLimit
 	player_score = 0 # Puntuació del jugador
 	error_count = 0 # Comptador d'errors
+	correct_letters = 0 # Comptador de lletres correctes
+	incorrect_letters = 0 # Comptador de lletres incorrectes
+	correct_words = 0 # Comptador de paraules correctes
+	incorrect_words = 0 # Comptador de paraules incorrectes
 
 	#Bucle del joc
 	i = 0
@@ -161,6 +181,7 @@ def game():
 
 			if "_" not in lines:
 						print("Resposta correcta!")
+						correct_words += 1
 						player_score += word_score # Incrementar la puntiació del jugador
 						time.sleep(1)
 						break
@@ -180,36 +201,55 @@ def game():
 					clear()
 				
 				if guess_type == "letter" or guess_type == "symbol":
-					if guess in answer:
+
+					# Evitar lletres duplicades (per estadístiques i per evitar múltiples errors)					
+					if guess in guessed_letters:
+						print("Ja heu provat aquesta lletra.")
+						time.sleep(1)
+
+					elif guess in answer and guess not in guessed_letters:
+						correct_letters += 1
 						for x in range(len(answer)):
 							if answer[x] == guess:
 								lines[x] = guess
+						guessed_letters.append(guess)
 								
 					else:
 						print("Lletra incorrecta :(")
+						incorrect_letters += 1
 						error_count += 1 # augmenta el comptador d'errors
+						player_score -= 1 # -1 punt per lletra incorrecta
+						if player_score <= 0:
+							player_score = 0 # Per evitar puntuacions negatives
 						time.sleep(1)
+						guessed_letters.append(guess)
 						
-					guessed_letters.append(guess)
 				
 				elif guess_type == "word":
 					
 					if guess.lower() == answer:
 
 						print("Resposta correcta!\n")
+						correct_words += 1
 						player_score += word_score # Incrementar la puntiació del jugador
 						time.sleep(1)
 						
 					else:
 						print("Resposta incorrecta :(\n")
+						incorrect_words += 1
 						error_count += 1
+						player_score -= 5 # -5 punts per paraula incorrecta
+						if player_score <= 0:
+							player_score = 0 # Per evitar puntuacions negatives
 						time.sleep(1)
 					
 					break
 			
 			else:
 				clear()
-				print("El temps s'ha acabat!")
+				print("El temps s'ha acabat!\n\n\n")
+				time.sleep(1)
+				game_stats(player_score, correct_letters, incorrect_letters, correct_words, incorrect_words)
 				press_enter()
 				break
 
@@ -217,7 +257,9 @@ def game():
 		if i >= len(Questions):
 			
 			clear()
-			print("Has respost totes les preguntes!")
+			print("Has respost totes les preguntes!\n\n\n")
+			time.sleep(1)
+			game_stats(player_score, correct_letters, incorrect_letters, correct_words, incorrect_words)
 			press_enter()
 			break
 
@@ -230,8 +272,10 @@ def game():
 			print("/ \  │  ")
 			print("     │  ")
 			print("─────┴──")
-			print("\nPenjat!!!")
-			time.sleep(2)
+			print("\nPenjat!!!\n\n\n")
+			time.sleep(1)
+			game_stats(player_score, correct_letters, incorrect_letters, correct_words, incorrect_words)
+			press_enter()
 			break
 			
 	scores()
