@@ -189,6 +189,8 @@ def game():
 						print("Lletra incorrecta :(")
 						error_count += 1 # augmenta el comptador d'errors
 						player_score -= 1 # -1 punt per lletra incorrecta
+						if player_score <= 0:
+							player_score = 0 # Per evitar puntuacions negatives
 						time.sleep(1)
 						
 					guessed_letters.append(guess)
@@ -205,6 +207,8 @@ def game():
 						print("Resposta incorrecta :(\n")
 						error_count += 1
 						player_score -= 5 # -5 punts per paraula incorrecta
+						if player_score <= 0:
+							player_score = 0 # Per evitar puntuacions negatives
 						time.sleep(1)
 					
 					break
