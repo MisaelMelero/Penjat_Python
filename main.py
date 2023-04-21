@@ -81,17 +81,87 @@ def game():
 				lines.append(" ")
 			else:
 				lines.append("_")
+		error_count = 0 # Comptador d'errors
 		while True:
 			clear()
 			
 			time_left = int(end_time - time.time())
 			
-			print(f"Temps restant: {time_left} segons")
-			print("-"*25, "\n")
+			print("╔═══════════════════════════════════════════════════════════╗")
+			print("║                                                           ║▒")
+			print(f"║                 Temps restant: {time_left} segons                  ║▒")
+			print("║                                                           ║▒")
+			print("╚═══════════════════════════════════════════════════════════╝▒")
+			print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
+			print("                                       ")
+
 			print(f"Paraula {i+1}\n")
 			print("Definició:", definitions[Questions[i]])
-			print(f"\n({points[Questions[i]]} punts)\n")
+			print(f"\n({points[Questions[i]]} punts)\n")			
+
+			if error_count <=0:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print("     │  ")
+				print("     │  ")
+				print("     │  ")
+				print("     │  ")
+				print("─────┴──")
+			elif error_count <=1:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print(" O   │  ")
+				print("     │  ")
+				print("     │  ")
+				print("     │  ")
+				print("─────┴──")
+			elif error_count <=2:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print(" O   │  ")
+				print(" |   │  ")
+				print("     │  ")
+				print("     │  ")
+				print("─────┴──")
+			elif error_count <=3:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print(" O   │  ")
+				print("/|   │  ")
+				print("     │  ")
+				print("     │  ")
+				print("─────┴──")
+			elif error_count <=4:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print(" O   │  ")
+				print("/|\  │  ")
+				print("     │  ")
+				print("     │  ")
+				print("─────┴──")
+			elif error_count <=5:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print(" O   │  ")
+				print("/|\  │  ")
+				print("/    │  ")
+				print("     │  ")
+				print("─────┴──")
+			elif error_count <=6:
+				print(" ┌───┐  ")
+				print(" │   │  ")
+				print(" O   │  ")
+				print("/|\  │  ")
+				print("/ \  │  ")
+				print("     │  ")
+				print("─────┴──")
+				time.sleep(1)
+				print("Has fallat!!!")
+				time.sleep(2)
+				scores()
+
 			print(" ".join(lines))
+			
 			print("\nLletres provades:", guessed_letters)
 			print("\nParaula o lletra:\n")
 			#print("[DEBUG]", answer)
@@ -123,6 +193,7 @@ def game():
 								
 					else:
 						print("Lletra incorrecta :(")
+						error_count += 1 # augmenta el comptador d'errors
 						time.sleep(1)
 						
 					guessed_letters.append(guess)
