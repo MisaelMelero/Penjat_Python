@@ -48,7 +48,7 @@ definitions = []
 points = []
 
 #Parser CSV
-with open('/media/alum-01/PortableSSD/Arian/2nSMIX/M12/PYTHON/Projecte PYTHON/penjat.csv') as file:
+with open('penjat.csv', newline='') as file:
 	reader = csv.DictReader(file)
 	QuestionCount = 0
 	for row in reader:
@@ -155,8 +155,9 @@ def game():
 				print("/ \  │  ")
 				print("     │  ")
 				print("─────┴──")
-				print("Has fallat!!!")
 				time.sleep(1)
+				print("Has fallat!!!")
+				time.sleep(2)
 				scores()
 
 			print(" ".join(lines))
