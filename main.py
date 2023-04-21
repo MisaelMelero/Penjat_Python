@@ -68,12 +68,15 @@ def game():
 	timeLimit = 60
 	start_time = time.time()
 	end_time = start_time + timeLimit
+	player_score = 0 # Puntuació del jugador
+	error_count = 0 # Comptador d'errors
 
 	#Bucle del joc
 	i = 0
 	while time.time() < end_time:
 		clear()
 		answer = words[Questions[i]].lower()
+		word_score = int(points[Questions[i]])
 		guessed_letters = []
 		lines = []
 		for char in answer:
@@ -81,7 +84,6 @@ def game():
 				lines.append(" ")
 			else:
 				lines.append("_")
-		error_count = 0 # Comptador d'errors
 		while True:
 			clear()
 			
@@ -89,7 +91,8 @@ def game():
 			
 			print("╔═══════════════════════════════════════════════════════════╗")
 			print("║                                                           ║▒")
-			print(f"║                 Temps restant: {time_left} segons                  ║▒")
+			print(f"║                 Temps restant: {time_left:02d} segons                  ║▒")
+			print(f"║                   Puntuació: {player_score:03d} punts                    ║▒")	
 			print("║                                                           ║▒")
 			print("╚═══════════════════════════════════════════════════════════╝▒")
 			print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
@@ -97,9 +100,9 @@ def game():
 
 			print(f"Paraula {i+1}\n")
 			print("Definició:", definitions[Questions[i]])
-			print(f"\n({points[Questions[i]]} punts)\n")			
+			print(f"\n({word_score} punts)\n")		
 
-			if error_count <=0:
+			if error_count == 0:
 				print(" ┌───┐  ")
 				print(" │   │  ")
 				print("     │  ")
@@ -107,7 +110,7 @@ def game():
 				print("     │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=1:
+			elif error_count == 1:
 				print(" ┌───┐  ")
 				print(" │   │  ")
 				print(" O   │  ")
@@ -115,7 +118,7 @@ def game():
 				print("     │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=2:
+			elif error_count == 2:
 				print(" ┌───┐  ")
 				print(" │   │  ")
 				print(" O   │  ")
@@ -123,7 +126,7 @@ def game():
 				print("     │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=3:
+			elif error_count == 3:
 				print(" ┌───┐  ")
 				print(" │   │  ")
 				print(" O   │  ")
@@ -131,7 +134,7 @@ def game():
 				print("     │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=4:
+			elif error_count == 4:
 				print(" ┌───┐  ")
 				print(" │   │  ")
 				print(" O   │  ")
@@ -139,7 +142,7 @@ def game():
 				print("     │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=5:
+			elif error_count == 5:
 				print(" ┌───┐  ")
 				print(" │   │  ")
 				print(" O   │  ")
@@ -147,18 +150,8 @@ def game():
 				print("/    │  ")
 				print("     │  ")
 				print("─────┴──")
-			elif error_count <=6:
-				print(" ┌───┐  ")
-				print(" │   │  ")
-				print(" O   │  ")
-				print("/|\  │  ")
-				print("/ \  │  ")
-				print("     │  ")
-				print("─────┴──")
-				time.sleep(1)
-				print("Has fallat!!!")
-				time.sleep(2)
-				scores()
+			elif error_count == 6:
+				break
 
 			print(" ".join(lines))
 			
@@ -168,6 +161,7 @@ def game():
 
 			if "_" not in lines:
 						print("Resposta correcta!")
+						player_score += word_score # Incrementar la puntiació del jugador
 						time.sleep(1)
 						break
 			
@@ -203,13 +197,14 @@ def game():
 					if guess.lower() == answer:
 
 						print("Resposta correcta!\n")
+						player_score += word_score # Incrementar la puntiació del jugador
 						time.sleep(1)
 						
 					else:
-						print("Resposta incorrecta :(")
 						print("Resposta incorrecta :(\n")
-
+						error_count += 1
 						time.sleep(1)
+					
 					break
 			
 			else:
@@ -224,6 +219,19 @@ def game():
 			clear()
 			print("Has respost totes les preguntes!")
 			press_enter()
+			break
+
+		if error_count == 6:
+			clear()
+			print(" ┌───┐  ")
+			print(" │   │  ")
+			print(" O   │  ")
+			print("/|\  │  ")
+			print("/ \  │  ")
+			print("     │  ")
+			print("─────┴──")
+			print("\nPenjat!!!")
+			time.sleep(2)
 			break
 			
 	scores()
@@ -243,7 +251,7 @@ def scores():
 	print("║                                                                             ║▒")
 	print("║                           1. Ranking general                                ║▒")
 	print("║                           2. Puntuacions personals                          ║▒")
-	print("║                           3. Sortir                                         ║▒")
+	print("║                           3. Menú principal                                 ║▒")
 	print("║                                                                             ║▒")
 	print("╚═════════════════════════════════════════════════════════════════════════════╝▒")
 	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
