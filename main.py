@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 #Llibreries
+import heapq
 import datetime
 import os
 import sys
@@ -69,28 +70,55 @@ def stats_display(a, b, c, d, e):
 	print("  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
 
 
-def save_stats(username, a, b, c, d, e):
+def save_user_stats(username, a, b, c, d, e):
+    # Crea un diccionari amb les dades de l'usuari per guardar-les en el fitxer CSV
     game_stats = {
-     'username': username,
-     'player_score': a,
-     'correct_letters': b,
-     'incorrect_letters': c,
-     'correct_words': d,
-     'incorrect_words': e,
-     'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        'username': username,
+        'player_score': a,
+        'correct_letters': b,
+        'incorrect_letters': c,
+        'correct_words': d,
+        'incorrect_words': e,
+        'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
-    try:
+
+    # Comprova si el fitxer CSV ja existeix
+    if os.path.isfile(f"{username}.csv"):
+        # Si ja existeix, afegeix les dades al final del fitxer
         with open(f"{username}.csv", mode='a', newline='') as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=game_stats.keys())
-            if csv_file.tell() == 0:  # Check if file is empty
-                writer.writeheader()
             writer.writerow(game_stats)
-    except FileNotFoundError:
+    else:
+        # Si no existeix, crea el fitxer amb les dades del capçalera i la primera fila
         with open(f"{username}.csv", mode='w', newline='') as csv_file:
             writer = csv.DictWriter(csv_file, fieldnames=game_stats.keys())
             writer.writeheader()
             writer.writerow(game_stats)
 
+
+def save_leaderboard_stats(username, player_score):
+    leaderboard_file = "leaderboard.csv"
+
+    if not os.path.isfile(leaderboard_file):
+        with open(leaderboard_file, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['username', 'player_score'])
+
+    scores = []
+    with open(leaderboard_file, mode='r', newline='') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            scores.append({'username': row['username'], 'player_score': int(row['player_score'])})
+
+    scores.append({'username': username, 'player_score': player_score})
+
+    top_scores = heapq.nlargest(10, scores, key=lambda s: s['player_score'])
+
+    with open(leaderboard_file, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['username', 'player_score'])
+        for score in top_scores:
+            writer.writerow([score['username'], score['player_score']])
 
 
 #Matrius per emmagatzemar les dades del fitxer "penjat.csv"
@@ -291,8 +319,9 @@ def game(username):
 				time.sleep(1)
 				stats_display(player_score, correct_letters, incorrect_letters,
 				              correct_words, incorrect_words)
-				save_stats(player_name, player_score, correct_letters, incorrect_letters,
-				           correct_words, incorrect_words)
+				save_user_stats(player_name, player_score, correct_letters, incorrect_letters, correct_words, incorrect_words)
+				save_leaderboard_stats(player_name, player_score)
+				
 				press_enter()
 				break
 
@@ -304,8 +333,8 @@ def game(username):
 			time.sleep(1)
 			stats_display(player_score, correct_letters, incorrect_letters,
 			              correct_words, incorrect_words)
-			save_stats(player_name, player_score, correct_letters, incorrect_letters,
-			           correct_words, incorrect_words)
+			save_user_stats(player_name, player_score, correct_letters, incorrect_letters, correct_words, incorrect_words)
+			save_leaderboard_stats(player_name, player_score)
 			press_enter()
 			break
 
@@ -322,10 +351,40 @@ def game(username):
 			time.sleep(1)
 			stats_display(player_score, correct_letters, incorrect_letters,
 			              correct_words, incorrect_words)
-			save_stats(player_name, player_score, correct_letters, incorrect_letters,
-			           correct_words, incorrect_words)
+			save_user_stats(player_name, player_score, correct_letters, incorrect_letters, correct_words, incorrect_words)
+			save_leaderboard_stats(player_name, player_score)
 			press_enter()
 			break
+
+def leaderboard():
+	clear()
+	# Comprova si el fitxer de puntuacions existeix
+	scores_filename = "leaderboard.csv"
+	if not os.path.isfile(scores_filename):
+			print("No s'ha trobat el fitxer de puntuacions.")
+			return
+	
+	# Llegeix les puntuacions del fitxer
+	scores = []
+	with open(scores_filename, mode='r', newline='') as csv_file:
+			reader = csv.DictReader(csv_file)
+			for row in reader:
+					scores.append((int(row['player_score']), row['username']))
+	
+	# Ordena les puntuacions per puntuació, de més gran a més petit
+	sorted_scores = sorted(scores, reverse=True)
+	
+	# Imprimeix les puntuacions en un tauler ASCII
+	print("TOP 10 JUGADORS")
+	print("================")
+	
+	print("|{:<4}|{:<20}|{:<10}|".format("POS.", "JUGADOR", "PUNTS"))
+	print("-" * 36)
+	
+	for i, (score, username) in enumerate(sorted_scores[:10]):
+			print("|{:<4}|{:<20}|{:<10}|".format(i + 1, username, score))
+	
+	print("================")
 
 def user_scores(username):
 	clear()
@@ -401,7 +460,8 @@ def scores(username):
 	
 		opcio_menu_2 = input("Selecciona una opció: ")
 		if opcio_menu_2 == "1":
-			ranking_general()
+			leaderboard()
+			press_enter()
 		elif opcio_menu_2 == "2":
 			user_scores(username)
 			press_enter()
@@ -410,10 +470,6 @@ def scores(username):
 		else:
 			print("\nOpció no vàlida. Si us plau, selecciona una opció del menú.\n")
 			time.sleep(1)
-	
-
-def ranking_general():
-	print("Aquí apareixerà el ranking general")
 
 
 #Funció per sortir del programa
