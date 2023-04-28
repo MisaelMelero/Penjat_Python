@@ -19,7 +19,52 @@ Memòria RAM,Memòria d'accés aleatori que emmagatzema les dades de forma tempo
 CPU,Unitat central de processament de la computadora.,6
 Microprocessador,Circuit integrat que executa les instruccions del programa.,17
 Bluetooth,Tecnologia de comunicació sense fils de curt abast.,11
+Wi-Fi,Tecnologia de comunicació sense fils per connectar-se a internet.,7Paraula,Definició,Puntuació
+Computadora,Màquina que processa i emmagatzema dades.,12
+Teclat,Dispositiu que permet introduir dades a través de tecles.,8
+Ratolí,Dispositiu apuntador que permet moure el cursor a la pantalla.,8
+Pantalla,Dispositiu de sortida que mostra informació visual.,9
+Sistema operatiu,Programa que controla les operacions bàsiques de la computadora.,18
+Aplicació,Programa que realitza una funció específica.,11
+Internet,Xarxa mundial d'ordinadors interconnectats.,8
+Navegador,Programa que permet accedir i navegar per internet.,11
+Correu electrònic,Sistema de missatgeria electrònica.,16
+Xarxa,Conjunt d'ordinadors connectats entre si per comunicar-se i compartir recursos.,8
+Seguretat informàtica,Conjunt de mesures per protegir les dades i la informació.,21
+Firewall,Programa que controla l'accés a la xarxa.,12
+Virus informàtic,Programa maliciós que infecta i danya la computadora.,15
+Malware,Programa maliciós que té com a objectiu danificar o obtenir accés no autoritzat a la informació.,7
+Còpia de seguretat,Còpia de les dades per prevenir la pèrdua d'informació.,18
+Disc dur,Dispositiu d'emmagatzematge intern de la computadora.,8
+Memòria RAM,Memòria d'accés aleatori que emmagatzema les dades de forma temporal.,12
+CPU,Unitat central de processament de la computadora.,6
+Microprocessador,Circuit integrat que executa les instruccions del programa.,17
+Bluetooth,Tecnologia de comunicació sense fils de curt abast.,11
 Wi-Fi,Tecnologia de comunicació sense fils per connectar-se a internet.,7
+Ethernet,Tecnologia de xarxa per connectar ordinadors a través de cable.,9
+USB,Interfície per connectar dispositius externs a la computadora.,5
+Pantalla tàctil,Pantalla que permet interaccionar amb la computadora a través del toc.,15
+Realitat virtual,Tecnologia que permet crear un entorn virtual interactiu.,16
+Criptomoneda,Moneda digital segura que utilitza la criptografia per verificar transaccions.,10
+Malversació,"Apropiació il·legal de fons o propietats confiats, sobretot per part d'un empleador o entitat governamental.",8
+Biometria,"Identificació d'individus mitjançant característiques biològiques úniques, com ara les dactilars o els trets facials.",7
+Desenvolupament,"Creació o millora de productes, serveis o sistemes informàtics mitjançant la planificació, el disseny i la implementació de solucions eficients i efectives.",8
+Algorisme,Conjunt d'instruccions que es fan servir per resoldre un problema o realitzar una tasca.,6
+Cloud computing,"Utilització de servidors remots per a l'emmagatzematge, la gestió i el processament de dades.",8
+Big data,Anàlisi de grans conjunts de dades complexos per obtenir informació valuosa i útil.,9
+Realitat augmentada,Superposició d'imatges virtuals sobre el món real per millorar l'experiència de l'usuari.,7
+Impressora,Dispositiu que imprimeix text o imatges en paper o altres suports.,6
+Codi font,"Conjunt d'instruccions per programar software, escrit en llenguatges com ara C++ o Python.",8
+Encapsulament,Ocultació de detalls internos d'un objecte per a una millor modularitat i reutilització del codi.,7
+Interfície d'usuari,Part d'un software que s'utilitza per interactuar amb l'usuari.,6
+Programari,"Conjunt de programes, dades i rutines per a una tasca específica en un dispositiu.",8
+Controlador,Dispositiu o programa que controla el funcionament d'un dispositiu o sistema.,8
+Sincronització,Procés per assegurar que les dades en dos o més dispositius o sistemes siguin sincronitzades.,7
+Autenticació,Verificació de la identitat d'un usuari per permetre l'accés a un sistema o dispositiu.,7
+Encriptació,Conversió de dades en un format ilegible sense una clau especial per a la privacitat i la seguretat de la informació.,8
+Gestió de projectes,"Planificació, organització i direcció de recursos per a un projecte específic.",9
+Llenguatge natural,Capacitat d'una computadora per comprendre i analitzar el llenguatge humà.,7
+Enginyeria de software,"Disciplina per al disseny, la creació i el manteniment de software de alta qualitat i eficiència.",8
 Ethernet,Tecnologia de xarxa per connectar ordinadors a través de cable.,9
 USB,Interfície per connectar dispositius externs a la computadora.,5
 Pantalla tàctil,Pantalla que permet interaccionar amb la computadora a través del toc.,15
